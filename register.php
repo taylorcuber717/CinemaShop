@@ -11,6 +11,7 @@
     session_start();
 ?>
 <h3>Register</h3>
+<br></body>
 <form action="controller.php" method="post">
 <div class="loginContainer">
 <div class="labels">Username&nbsp;</div>
