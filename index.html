@@ -12,50 +12,28 @@
 <a href="login.php">Register</a>
 <div onclick="logOut()">Logout</div>
 </div>
-<img src="http://www.gstatic.com/tv/thumb/v22vodart/16843164/p16843164_v_v8_am.jpg" onclick="selectMovie('Ford V Ferrari')">
-<img src="https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg" onclick="selectMovie('Joker')">
-<img src="https://s.abcnews.com/images/GMA/frozen1-ht-ml-190610_hpMain_v12x5_4x3_992.jpg" onclick="selectMovie('Frozen II')">
+<br>
+<div id="divToChange" class="time_outer">
+	<img src="http://www.gstatic.com/tv/thumb/v22vodart/16843164/p16843164_v_v8_am.jpg" onclick="selectMovie('Ford V Ferrari')">
+	<img src="https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg" onclick="selectMovie('Joker')">
+	<img src="https://s.abcnews.com/images/GMA/frozen1-ht-ml-190610_hpMain_v12x5_4x3_992.jpg" onclick="selectMovie('Frozen II')">
+</div>
 <script>
-function logOut() {
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	ajax.open("GET", "controller.php?button=" + button+"&query="+query, true); // Arguments Method, url, async
+function selectMovie(movie){
+	divToChange = document.getElementById("divToChange");
+	var ajax = new XMLHttpRequest();
+	ajax.open("GET", "controller.php?movie=" + movie, true); // Arguments Method, url, async
 	ajax.send();
 	ajax.onreadystatechange = function() {
 		console.log("State: " + ajax.readyState);
 		if (ajax.readyState == 4 && ajax.status == 200) {
 			var array = JSON.parse(ajax.responseText);
-			if(button=='actor' && array!=0){
-				result = "<br><br><b>Actors<br></b><br><table>";
-				for(i=0;i <array.length; i++){
-					result += "<tr><td>"+array[i]['first_name'] + " " + array[i]['last_name']+"</td></tr>";
-				}
-				result += "</table>";
-			} else if(button=='movie' && array!=0) {
-				result = "<br><br><b>Movies<br></b><br><table>";
-				for(i=0;i <array.length; i++){
-					result += "<tr><td>"+array[i]['name']+"</td></tr>";
-				}
-				result += "</table>";
-			} else if(button=='role' && array!=0) {
-				result = "<br><br><b>Roles<br></b><br><table>";
-				for(i=0;i <array.length; i++){
-					result += "<tr><td>"+array[i]['role']+"</td></tr>";
-				}
-					result += "</table>";
-			} else {
-				result = "<br>No matches for '"+ query +"'";
+			var result='<div class="time_outer">';
+			result+='Movie show times for ' + array[0]['name'];
+			for(i=0;i <array.length; i++){
+				result += '<div class="time_inner" onclick="timeMsg()">' + array[i]['time'] + '</div>';
 			}
+			result+='</div><br>Rated: ' + array[0]['rating'] +'<br>Run time: ' + array[0]['run'];
 			divToChange.innerHTML = result;
 		}
 	}

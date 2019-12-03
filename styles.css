@@ -1,0 +1,12 @@
+@CHARSET "UTF-8";
+/* Aidan ODonnell */
+.time_outer {
+	border: 5px solid black;
+}
+
+.time_inner {
+	float: left;
+	border: 3px solid red;
+	margin: 5px;
+	padding: 3px;
+}
