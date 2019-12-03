@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @CHARSET "UTF-8";
 /* Aidan ODonnell */
 .time_outer {
@@ -9,4 +10,18 @@
 	border: 3px solid red;
 	margin: 5px;
 	padding: 3px;
+=======
+<!-- Taylor McLaughlin and Aid ODonnell -->
+@charset "utf-8";
+
+.movie {
+	max-width: 300px;
+	max-height: 500px;
+}
+
+img.movie {
+	width: 300px;
+	height: 500px;
+	
+>>>>>>> branch 'master' of https://github.com/taylorcuber717/CinemaShop.git
 }
